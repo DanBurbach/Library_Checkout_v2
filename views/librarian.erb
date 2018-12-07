@@ -1,0 +1,54 @@
+<p>List of checked out books</p>
+<p>Optional:Delete Patron</p>
+
+<h3>List of Patrons</h3>
+
+<% @patrons.each() do |patron| %>
+  <div class="checkbox">
+    <label>
+      <input type="checkbox" name="patron_ids[]" value="<%= patron.id() %>"><%= patron.name() %>
+    </label>
+  </div>
+<% end %>
+
+<form action="/patron_library" method="post">
+  <label for="name">Patron's name:</label>
+  <input id="name" name="name" type="text">
+  <button type="submit">Add patron</button>
+</form>
+
+
+
+<% if @books.any?() %>
+<h3>Book listings</h3>
+<ul>
+  <% @books.each do |book| %>
+    <li><a href="/books/<%= book.id() %>"><%= book.title() %></a></li>
+  <% end %>
+</ul>
+
+<% else %>
+  <h3>There are no books added yet!</h3>
+<% end %>
+
+<h3>Add books</h3>
+<form action="/add_book" method="post">
+  <label for="title">Book title:</label>
+  <input id="title" name="title" type="text">
+  <label for="author">Author:</label>
+  <input id="author" name="author" type="text">
+  <div class="radio">
+    <label>
+      <input type="radio" name="status" value="t" checked>Available
+    </label>
+    <label>
+      <input type="radio" name="status" value="f">Checked Out
+    </label>
+  </div>
+  <button type="submit">Add Book</button>
+</form>
+
+<a href="/book_list">Book Listing |</a>
+<a href="/author">Author Listing |</a>
+<a href="/patron">Patron|</a>
+<a href="/">Home</a>

@@ -1,0 +1,14 @@
+<h3>Available Books</h3>
+
+<% @books.each() do |book| %>
+  <div class="checkbox">
+    <label>
+      <input type="checkbox" name="book_ids[]" value="<%= book.id() %>"><%= book.title() %>
+    </label>
+  </div>
+<% end %>
+
+
+
+<p>Checkout</p>
+<a href="/">Home</a>
